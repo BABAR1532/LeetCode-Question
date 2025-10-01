@@ -1,9 +1,5 @@
 import java.util.*;
 
-
-
-
-
 class leetcode32{
 
    public static void main(String[] args){
@@ -13,7 +9,6 @@ class leetcode32{
      String value = scan.next();
 
      System.out.println(LongValidParent(value));
-
 
 
    }
