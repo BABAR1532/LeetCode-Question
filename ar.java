@@ -1,7 +1,7 @@
 import java.util.*;
 
 
-public class Marks{
+class Marks{
  
     // Method for printing list value
     public static void print(ArrayList<String> list){
