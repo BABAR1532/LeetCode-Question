@@ -1,76 +1,45 @@
-class Solution {
-    public void reorderList(ListNode head) {
+// class Solution {
+//     public int pivotIndex(int[] nums) {
+//
+//      // Calcuating array sum
+//       int sum = 0;
+//
+//      for(int value:nums){
+//          sum += value;
+//      }
+//
+//
+//     for(int i = 1; i < nums.length; i++){
+//
+//      left += nums[i-1];
+//      right = sum - (nums[i] + left);
+//
+//       if(left == right) return i;
+//     }
+//
+//      return -1;
+//
+//     }
+// }
 
+int n = 0;
 
-      if(head == null || head.next = null) return head;
+int count = 0;
 
+for(int i = 2; i < n; i++){
 
+   if(n % 2 == 0){
+       n = n / 2;
+       count++;
+   }
 
-        ListNode fast = head;
-        ListNode slow = head;
+   if(n % 3 == 0){
+      n = n/2;
+      count++;
+   }
 
-
-       while(fast != null && fast.next != null){
-
-
-          slow = slow.next;
-          fast = fast.next.next;
-
-       }
-
-
-      // Find the mid node
-      ListNode p2 = reverseNode(slow.next);
-
-      // left list
-      slow.next = null;
-
-      ListNode p1 = head;
-
-
-      while(p2 != null){
-
-          ListNode next1 = p1.next;
-          ListNode next2 = p2.next;
-
-          p1.next = p2;
-          p2.next = next1;
-
-
-          p1 = next1;
-          p2 = next2;
-
-
-         // current = current.next;
-         // temp.next = mid;
-         //
-         // mid.next = current;
-         //
-         // temp = current;
-         // mid = mid.next;
-      }
-
-
-    }
-
-
-    // Reverse node code
-    public static ListNode reverseNode(ListNode root){
-
-          ListNode prev = null;
-          ListNode current = root;
-          ListNode next = root;
-
-          while(next != null){
-
-              next = current.next;
-              current.next =  prev;
-              prev = current;
-              current = next;
-
-          }
-
-          return prev;
-
-
-    }
+  else {
+    count++;
+    break;
+  }
+}
