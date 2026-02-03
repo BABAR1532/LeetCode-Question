@@ -1,36 +1,34 @@
-class solution{
+import java.util.*;
 
-    public static isStrogrammatic(String  num){
+class Solution {
 
-       HashMap<Character,Character> map = new HashMap<>();
+    public static boolean isStrobogrammatic(String num) {
 
-       map.put('0','0');
-       map.put('1','1');
-       map.put('8','8');
-       map.put('6','9');
-       map.put('9','6');
+        HashMap<Character, Character> map = new HashMap<>();
 
+        map.put('0', '0');
+        map.put('1', '1');
+        map.put('8', '8');
+        map.put('6', '9');
+        map.put('9', '6');
 
-       int start = 0;
-       int end = num.length() - 1;
+        int start = 0;
+        int end = num.length() - 1;
 
-       while(start <= end){
+        while (start <= end) {
 
-        char left = num.charAt(start);
-        char right = num.charAt(end);
+            char left = num.charAt(start);
+            char right = num.charAt(end);
 
-        if(!map.containsKey(left) || map.containsKey(left) != right){
-           return false;
-         }
+            if (!map.containsKey(left) || map.get(left) != right) {
+                return false;
+            }
 
+            start++;
+            end--;
+        }
 
-       left++;
-       right++:
-
-       }
-
+        return true;
     }
-
-
-
 }
+
