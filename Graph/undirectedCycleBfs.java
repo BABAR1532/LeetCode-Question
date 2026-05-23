@@ -1,51 +1,64 @@
-import java.util.ArrayList;
-
 class Solution {
 
-    public static boolean dfs(
-        ArrayList<ArrayList<Integer>> adj, // This acts just like vector<int> adj[] in C++
+    class Pair {
+
+        int node;
+        int parent;
+
+        Pair(int node, int parent) {
+            this.node = node;
+            this.parent = parent;
+        }
+    }
+
+    public boolean bfs(
+        ArrayList<ArrayList<Integer>> lists,
         int node,
-        boolean[] visited,
-        int parent
+        boolean[] visited
     ) {
+        Queue<Pair> q = new LinkedList<>();
+        q.add(new Pair(node, -1));
+
         visited[node] = true;
 
-        // NOW you can iterate directly just like you do in C++!
-        for (int neighbor : adj.get(node)) {
-            if (!visited[neighbor]) {
-                if (dfs(adj, neighbor, visited, node)) {
+        while (!q.isEmpty()) {
+            Pair p = q.remove();
+
+            for (int i : lists.get(p.node)) {
+                if (!visited[i]) {
+                    visited[i] = true;
+                    q.add(new Pair(i, p.node));
+                } else if (i != p.parent) {
                     return true;
                 }
-            } else if (neighbor != parent) {
-                return true;
             }
         }
+
         return false;
     }
 
     public boolean isCycle(int V, int[][] edges) {
-        // Because Java gives us raw edges, we must manually build the C++ style 'adj' structure first
-        ArrayList<ArrayList<Integer>> adj = new ArrayList<>();
-        for (boolean i = 0; i < V; i++) {
-            adj.add(new ArrayList<>());
+        ArrayList<ArrayList<Integer>> lists = new ArrayList<>();
+
+        for (int i = 0; i < V; i++) {
+            lists.add(new ArrayList<>());
         }
 
-        // Populating our adjacency list
-        for (int[] edge : edges) {
-            adj.get(edge[0]).add(edge[1]);
-            adj.get(edge[1]).add(edge[0]);
+        // Making adjacent lists
+        for (int[] l : edges) {
+            lists.get(l[0]).add(l[1]);
+            lists.get(l[1]).add(l[0]);
         }
 
-        boolean[] visited = new boolean[V];
+        boolean visited[] = new boolean[V];
 
         for (int i = 0; i < V; i++) {
             if (!visited[i]) {
-                if (dfs(adj, i, visited, -1)) {
+                if (bfs(lists, i, visited)) {
                     return true;
                 }
             }
         }
-
         return false;
     }
 }
