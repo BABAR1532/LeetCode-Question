@@ -42,7 +42,7 @@ class Solution {
         }
 
         PriorityQueue<Pair> pq = new PriorityQueue<>((a, b) -> {
-            if (a.pos1 != b.pos1) return b.pos1 - a.pos1;
+            if (a.pos1 != a.pos2) return b.pos1 - a.pos2;
             return b.index - a.index;
         });
 
@@ -56,9 +56,12 @@ class Solution {
 
         int ans[] = new int[k];
 
-        for (int i = k - 1; i >= 0; i--) {
-            ans[i] = pq.poll().index;
+        for (int i = 0; i < k; i++) {
+            Pair val = pq.poll();
+            ans[i] = val.index;
         }
+
+        Collections.reverse(ans);
 
         return ans;
     }
