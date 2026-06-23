@@ -8,7 +8,6 @@ class Solution {
         Pair(int row, int col) {
             this.row = row;
             this.col = col;  for(int i = 0; i < size; i++){
-
    }
         }
     }
