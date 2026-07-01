@@ -35,3 +35,48 @@ class Solution {
 
     }
 }
+
+
+///
+
+
+
+class Solution {
+  
+  public void swap(int[] nums, int i, int j){
+     int temp = nums[i];
+     nums[i] = nums[j];
+     nums[j] = temp;
+  }
+      
+    public int[] sortedSquares(int[] nums) {
+        
+       int start = 0;
+       int end = nums.length - 1;
+       int index = nums.length - 1;
+
+       int[] ans = new int[nums.length];
+
+       while(start <= end){
+          
+          int val1 = nums[start] * nums[start];
+          int val2 = nums[end] * nums[end];
+
+              
+          if(val1 > val2){
+              ans[index--] = val1;
+              start++;
+          }  
+          else{
+            ans[index--] = val2;
+            end--;
+          }  
+
+         
+       }
+
+
+       return ans;
+
+    }
+}
